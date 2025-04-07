@@ -4743,5 +4743,4 @@ function library:CreateSettingsTab(menu)
     return settingsTab;
 end
 
-getgenv().library = library
 return library
