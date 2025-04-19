@@ -2,7 +2,7 @@
 local Library = {}
 local menu_font = Font.fromName("Ubuntu", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
 
-do -- Library Skinny.vip real
+do -- Library 
 	Library = {
 		Open = true;
 		Accent = Color3.fromRGB(255, 128, 139); --Color3.fromRGB(0,117,19);
