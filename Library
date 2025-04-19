@@ -1,7 +1,7 @@
 
 local Library = {}
 
-do -- Library
+do -- Library Skinny.vip
 	Library = {
 		Open = true;
 		Accent = Color3.fromRGB(255, 128, 139); --Color3.fromRGB(0,117,19);
