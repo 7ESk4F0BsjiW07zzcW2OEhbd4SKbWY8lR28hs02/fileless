@@ -646,6 +646,7 @@ do -- Library Skinny.vip
 			Einstein.Name = "Einstein"
 			Einstein.DisplayOrder = 5
 			Einstein.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+			Einstein.Parent = (gethui and gethui() or game:GetService("CoreGui")
 
 			local ImageLabel = Instance.new("ImageLabel")
 			ImageLabel.Name = "ImageLabel"
