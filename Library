@@ -246,7 +246,10 @@ do -- Library
 					theme.ImageColor3 = Color
 				elseif theme:IsA("ScrollingFrame") then
 					theme.ScrollBarImageColor3 = Library.Accent
+				elseif theme:IsA("UIGradient") and theme.Parent.Name == "Gradient" then-- keybind list
+					theme.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.50, Library.Accent), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
 				end
+				
 			end
 		end
 		
@@ -701,7 +704,7 @@ do -- Library
 			ScriptTitle.BorderSizePixel = 0
 			ScriptTitle.Size = UDim2.new(0, 20, 0, 20)
 			ScriptTitle.FontFace = menu_font
-			ScriptTitle.Text = '<font color="rgb(255, 128, 139)">Einstein</font> | 0.0'
+			ScriptTitle.Text = 'Einstein'
 			ScriptTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			ScriptTitle.TextSize = 12.000
 			ScriptTitle.RichText = true
