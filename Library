@@ -858,12 +858,12 @@ do
             RgbBox.Text = table.concat({ math.floor(ColorPicker.Value.R * 255), math.floor(ColorPicker.Value.G * 255), math.floor(ColorPicker.Value.B * 255) }, ', ')
 
             Library:SafeCallback(ColorPicker.Callback, ColorPicker.Value, ColorPicker.Transparency);
-            Library:SafeCallback(ColorPicker.Changed, ColorPicker.Value, ColorPicker.Transparency);
+            Library:SafeCallback(ColorPicker.Changed, ColorPicker.Value);
         end;
 
         function ColorPicker:OnChanged(Func)
             ColorPicker.Changed = Func;
-            Func(ColorPicker.Value, ColorPicker.Transparency)
+            Func(ColorPicker.Value)
         end;
 
         function ColorPicker:Show()
