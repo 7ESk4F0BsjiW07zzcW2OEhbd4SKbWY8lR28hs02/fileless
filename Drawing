@@ -1,15 +1,12 @@
---// not made by me
+local Camera = workspace.CurrentCamera
+local Offset = game:GetService("GuiService"):GetGuiInset()
 
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "Drawing"
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.DisplayOrder = 0x7fffffff
+ScreenGui.Parent = cloneref(game:GetService("CoreGui"))
 
-local coreGui = game:GetService("CoreGui")
--- objects
-local camera = workspace.CurrentCamera
-local drawingUI = Instance.new("ScreenGui")
-drawingUI.Name = "Drawing"
-drawingUI.IgnoreGuiInset = true
-drawingUI.DisplayOrder = 0x7fffffff
-drawingUI.Parent = coreGui
--- variables
 local drawingIndex = 0
 local uiStrokes = table.create(0)
 local baseDrawingObj = setmetatable({
@@ -88,7 +85,7 @@ function DrawingLib.new(drawingType)
 					local distance = direction.Magnitude
 					local theta = math.deg(math.atan2(direction.Y, direction.X))
 
-					lineFrame.Position = UDim2.fromOffset(center.X, center.Y)
+					lineFrame.Position = UDim2.fromOffset(center.X + Offset.X, center.Y + Offset.Y)
 					lineFrame.Rotation = theta
 					lineFrame.Size = UDim2.fromOffset(distance, lineObj.Thickness)
 				elseif index == "To" then
@@ -97,7 +94,7 @@ function DrawingLib.new(drawingType)
 					local distance = direction.Magnitude
 					local theta = math.deg(math.atan2(direction.Y, direction.X))
 
-					lineFrame.Position = UDim2.fromOffset(center.X, center.Y)
+					lineFrame.Position = UDim2.fromOffset(center.X + Offset.X, center.Y + Offset.Y)
 					lineFrame.Rotation = theta
 					lineFrame.Size = UDim2.fromOffset(distance, lineObj.Thickness)
 				elseif index == "Thickness" then
@@ -183,7 +180,7 @@ function DrawingLib.new(drawingType)
 				elseif index == "Center" then
 					local position = (
 						if value then
-							camera.ViewportSize / 2
+							Camera.ViewportSize / 2
 							else
 							textObj.Position
 					)
