@@ -3473,11 +3473,6 @@ do -- Library
 			local chosen = nil
 			local optioninstances = {}
             
-            local function containsBrackets(text)
-                local leftBracketFound = text:match("%[")
-                local rightBracketFound = text:match("%]")
-                return leftBracketFound ~= nil and rightBracketFound ~= nil
-            end
 
 			local function handleoptionclick(option, button, accent)
 				button.MouseButton1Click:Connect(function()
@@ -3494,12 +3489,7 @@ do -- Library
 					
 					if Playerlist.CurrentPlayer ~= Playerlist.LastPlayer then
 						Playerlist.LastPlayer = Playerlist.CurrentPlayer;
-                        local hasemoji = containsBrackets(Playerlist.CurrentPlayer.Character.Humanoid.DisplayName)
-						local currentcash = -1
-						if Playerlist.CurrentPlayer:FindFirstChild("DataFolder") and Playerlist.CurrentPlayer.DataFolder:FindFirstChild("Currency") then 
-							currentcash = Playerlist.CurrentPlayer.DataFolder:FindFirstChild("Currency").Value
-						end
-						PlayerName1.Text = ("Id : %s\nDisplay Name : %s\nName : %s\nAccount Age : %s\nHas Emoji : %s\nCash : $%s"):format(Playerlist.CurrentPlayer.UserId, Playerlist.CurrentPlayer.DisplayName ~= "" and Playerlist.CurrentPlayer.DisplayName or Playerlist.CurrentPlayer.Name, Playerlist.CurrentPlayer.Name, Playerlist.CurrentPlayer.AccountAge,tostring(hasemoji),formatCash(currentcash))
+						PlayerName1.Text = ("Id : %s\nDisplay Name : %s\nName : %s\nAccount Age : %s\n"):format(Playerlist.CurrentPlayer.UserId, Playerlist.CurrentPlayer.DisplayName ~= "" and Playerlist.CurrentPlayer.DisplayName or Playerlist.CurrentPlayer.Name, Playerlist.CurrentPlayer.Name, Playerlist.CurrentPlayer.AccountAge)
 						
 						local imagedata = game:GetService("Players"):GetUserThumbnailAsync(Playerlist.CurrentPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
 
