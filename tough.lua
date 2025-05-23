@@ -825,20 +825,20 @@ do	-- // Library Functions
 			local relative_palette = (mouse_position - Color.AbsolutePosition)
 			local relative_hue     = (mouse_position - Hue.AbsolutePosition)
 			local relative_opacity = (mouse_position - Alpha.AbsolutePosition)
-			--
+
 			if slidingsaturation then
 				sat = math.clamp(1 - relative_palette.X / Color.AbsoluteSize.X, 0, 1)
 				val = math.clamp(1 - relative_palette.Y / Color.AbsoluteSize.Y, 0, 1)
 			end 
-			--  
+
 			if slidinghue then
 				hue = math.clamp(relative_hue.Y / Hue.AbsoluteSize.Y, 0, 1)
 			end  
-			-- 
+
 			if slidingalpha then
 				alpha = math.clamp(relative_opacity.Y / Alpha.AbsoluteSize.Y, 0, 1)
 			end
-			-- edited by finobe (yes these fucking alphas crash on roexec? nice executor for $8 a week :[ )
+
 			hsv = Color3.fromHSV(hue, sat, val)
 			Pointer.Position = UDim2.new(math.clamp(1 - sat, 0.005, 0.995), 0, math.clamp(1 - val, 0.005, 0.995), 0)
 			Color.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
@@ -1017,11 +1017,10 @@ do	-- // Library Functions
 			Sections = {};
 			Elements = {};
 			Dragging = { false, UDim2.new(0, 0, 0, 0) };
-			Size = Options.Size or Options.size or UDim2.new(0, 550,0, 600);
+			Size = Options.Size or Options.size or UDim2.new(0, 550, 0, 600);
 		};
-		--
-		local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
-		local Outline = Instance.new('Frame', ScreenGui)
+
+		local Outline = Instance.new('Frame', Library.ScreenGui)
 		local Inline = Instance.new('Frame', Outline)
 		local Accent = Instance.new('Frame', Inline)
 		local HolderOutline = Instance.new('Frame', Inline)
@@ -1031,7 +1030,7 @@ do	-- // Library Functions
 		local DragButton = Instance.new('TextButton', Outline)
 		local KeybindList = Library:KeybindList()
 		--
-		ScreenGui.DisplayOrder = 2
+		Library.ScreenGui.DisplayOrder = 2
 		--
 		Outline.Name = "Outline"
 		Outline.Position = UDim2.new(0.5,0,0.5,0)
@@ -1410,11 +1409,12 @@ do	-- // Library Functions
 			ZIndex = Properties.ZIndex or 1, -- Idfk why
 			Elements = {},
 			Content = {},
+			Size = (Properties.size or Properties.Size or 200)
 		}
 		--
 		local SectionOutline = Instance.new('Frame', Section.Side == "left" and Section.Page.Elements.Left or Section.Side == "right" and Section.Page.Elements.Right)
 		local SectionInline = Instance.new('Frame', SectionOutline)
-		local Container = Instance.new('Frame', SectionInline)
+		local Container = Instance.new('ScrollingFrame', SectionInline)
 		local UIListLayout = Instance.new('UIListLayout', Container)
 		local Space = Instance.new('Frame', Container)
 		local SectionAccent = Instance.new('Frame', SectionInline)
@@ -1422,11 +1422,11 @@ do	-- // Library Functions
 		local TextBorder = Instance.new('Frame', SectionOutline)	
 		--
 		SectionOutline.Name = "SectionOutline"
-		SectionOutline.Size = UDim2.new(1,0,0,20)
 		SectionOutline.BackgroundColor3 = Color3.new(0.1765,0.1765,0.1765)
 		SectionOutline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
 		SectionOutline.AutomaticSize = Enum.AutomaticSize.Y
 		SectionOutline.ZIndex = Section.ZIndex
+		SectionOutline.Size = UDim2.new(1, 0, 0, 200)
 		--
 		
 		--
@@ -1444,7 +1444,10 @@ do	-- // Library Functions
 		Container.BackgroundTransparency = 1
 		Container.BorderSizePixel = 0
 		Container.BorderColor3 = Color3.new(0,0,0)
-		Container.AutomaticSize = Enum.AutomaticSize.Y
+		Container.ScrollBarThickness = 0
+		Container.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		Container.ScrollBarImageColor3 = Library.Accent
+		Container.CanvasSize = UDim2.new(0, 0, 0, 0)
 		--
 		Space.Name = "Space"
 		Space.Position = UDim2.new(0,0,1,0)
@@ -3266,4 +3269,3 @@ do	-- // Library Functions
 end
 
 return Library
-
